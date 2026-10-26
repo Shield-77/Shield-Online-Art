@@ -1,8 +1,15 @@
 # SHIELD Online Art
 
-> **EXPÉRIMENTAL — développement en cours.** Aucun CIA n’est encore disponible.
+> **EXPÉRIMENTAL — version CIA v0.1.4 disponible.** Le fonctionnement complet reste à valider sur une vraie Old 3DS/2DS.
 
-Galerie en ligne prévue pour Nintendo 3DS/2DS, avec une priorité à la Old 3DS. La première version affichera les œuvres en 2D.
+Galerie DeviantArt destinée aux Nintendo 3DS/2DS, avec priorité à la Old 3DS. La première version vise l’affichage des œuvres en 2D.
+
+## Version disponible
+
+- Téléchargement : [release v0.1.4](https://github.com/Shield-77/Shield-Online-Art/releases/tag/v0.1.4).
+- CIA fourni : `ShieldOnlineArt.cia`.
+- v0.1.4 corrige l’empaquetage du bundle de certificats CA dans le RomFS. La vérification TLS reste activée.
+- Le build a été vérifié sur PC ; la connexion DeviantArt et l’affichage doivent encore être testés sur console.
 
 ## Commandes prévues
 
@@ -15,11 +22,11 @@ Galerie en ligne prévue pour Nintendo 3DS/2DS, avec une priorité à la Old 3DS
 
 - Aucun bouton d’enregistrement ou de téléchargement des images.
 - Les aperçus nécessaires à l’affichage restent temporairement en mémoire et ne sont pas copiés sur la carte SD.
-- Les formats seront validés d’après le type MIME et la signature réelle du fichier. JPEG et PNG sont les décodeurs présents dans la base ; les autres formats devront être confirmés avant d’être annoncés comme pris en charge.
-- Si un aperçu n’est pas décodable, l’application affichera une explication au lieu de planter.
+- Les formats seront validés d’après le type MIME et la signature réelle du fichier. JPEG et PNG sont les décodeurs présents ; les autres formats doivent être confirmés avant d’être annoncés comme pris en charge.
+- Si un aperçu n’est pas décodable, l’application doit afficher une explication plutôt que planter.
 
 ## Distribution
 
-Ce dépôt public est réservé aux versions binaires CIA et aux notes d’utilisation. Le code source n’y est pas publié. Les archives ZIP/TAR automatiques de GitHub ne contiendront que le README et les autres fichiers effectivement présents dans le dépôt ; le CIA sera joint comme asset de release.
+Ce dépôt ne publie pas le code source C de l’application. L’asset de release est le CIA. Les archives ZIP/TAR créées automatiquement par GitHub contiennent uniquement les fichiers présents dans le dépôt, notamment le README et la page de retour OAuth `oauth/index.html`.
 
-Shield Updater indiquera clairement que l’application est **EXPÉRIMENTALE**. La compatibilité du réseau, de l’authentification et des aperçus doit être validée sur une vraie Old 3DS avant la première release.
+Shield Updater v1.1.12 présente l’application comme **EXPÉRIMENTALE**. Le réseau, l’authentification et les aperçus restent à valider sur Old 3DS/2DS.
