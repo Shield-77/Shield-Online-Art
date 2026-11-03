@@ -1,5 +1,5 @@
 # SHIELD Online Art
-
+**Codex was used to write C++ code**
 
 > **EXPÉRIMENTAL — version CIA v0.1.4 disponible.** Le fonctionnement complet reste à valider sur une vraie Old 3DS/2DS.
 
