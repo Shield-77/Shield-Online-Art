@@ -1,0 +1,40 @@
+BasicInfo:
+  Title: SHIELD Online Art v0.1.9
+  ProductCode: SHLDART01
+  Logo: Homebrew
+
+RomFs:
+  RootPath: romfs
+
+TitleInfo:
+  Category: Application
+  UniqueId: 0xA2105
+
+Option:
+  UseOnSD: true
+  FreeProductCode: true
+  EnableCrypt: false
+  EnableCompress: true
+
+AccessControlInfo:
+  CoreVersion: 2
+  DescVersion: 2
+  FileSystemAccess:
+    - DirectSdmc
+  ServiceAccessControl:
+    - APT:U
+    - cfg:s
+    - cfg:u
+    - fs:USER
+    - gsp::Gpu
+    - gsp::Lcd
+    - hid:USER
+    - nwm::EXT
+    - mcu::HWC
+    - ps:ps
+    - soc:U
+
+SystemControlInfo:
+  SaveDataSize: 0KB
+  RemasterVersion: 1
+  StackSize: 0x40000

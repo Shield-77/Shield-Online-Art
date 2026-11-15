@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>SHIELD Online Art - Connexion</title>
+<style>body{background:#071626;color:#f2f9ff;font:17px system-ui,sans-serif;max-width:32rem;margin:3rem auto;padding:0 1rem}h1{color:#43daf4}label{display:block;margin:1.5rem 0 .5rem}input,button{font:inherit;padding:.7rem;border-radius:.5rem}input{width:90%;box-sizing:border-box}button{background:#36c6e4;color:#031927;border:0;margin-top:1rem}small{display:block;margin-top:1.5rem;color:#c4d4df}</style>
+</head>
+<body>
+<h1>SHIELD Online Art</h1>
+<p id="message">Préparation de la connexion…</p>
+<form id="transfer" hidden>
+<label for="address">Adresse affichée sur ta 3DS</label>
+<input id="address" inputmode="decimal" autocomplete="off" placeholder="192.168.1.10" required>
+<button type="submit">Continuer sur la 3DS</button>
+<small>Le téléphone et la 3DS doivent être sur le même Wi-Fi. Ne partage pas ce lien.</small>
+</form>
+<script>
+'use strict';
+(() => {
+  const message = document.getElementById('message');
+  const form = document.getElementById('transfer');
+  const params = new URLSearchParams(location.search);
+  // Remove credentials from the visible address and browser history immediately.
+  history.replaceState(null, '', location.pathname);
+  const codes = params.getAll('code'), states = params.getAll('state'), errors = params.getAll('error');
+  if (errors.length === 1 && codes.length === 0) { message.textContent = 'Connexion annulée ou refusée. Tu peux revenir sur ta 3DS.'; return; }
+  if (codes.length !== 1 || states.length !== 1 || errors.length || !/^[\x21-\x7e]{1,256}$/.test(codes[0]) || !/^[A-Za-z0-9_-]{22}$/.test(states[0])) {
+    message.textContent = 'La réponse reçue est incomplète. Recommence depuis la 3DS.'; return;
+  }
+  message.textContent = 'Autorisation reçue. Entre l’adresse indiquée sur ta 3DS pour terminer.';
+  form.hidden = false;
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const text = document.getElementById('address').value.trim();
+    if (!/^(?:0|[1-9][0-9]{0,2})(?:\.(?:0|[1-9][0-9]{0,2})){3}$/.test(text)) { message.textContent = 'Vérifie l’adresse affichée sur la 3DS.'; return; }
+    const ip = text.split('.').map(Number);
+    const privateIp = ip.every(x => x <= 255) && (ip[0] === 10 || (ip[0] === 192 && ip[1] === 168) || (ip[0] === 172 && ip[1] >= 16 && ip[1] <= 31));
+    if (!privateIp || ip[3] === 0 || ip[3] === 255) { message.textContent = 'Utilise l’adresse Wi-Fi privée affichée sur la 3DS.'; return; }
+    const query = new URLSearchParams({code: codes[0], state: states[0]});
+    // Explicit navigation avoids exposing any access token to this page; the
+    // one-time authorization code still requires the verifier held by the 3DS.
+    location.replace('http://' + text + ':38741/callback?' + query.toString());
+  });
+})();
+</script>
+</body>
+</html>
