@@ -6,6 +6,7 @@
 
 Galerie DeviantArt destinée aux 3DS/2DS, avec priorité à la Old 3DS. La première version vise l’affichage des œuvres en 2D.
 
+**l'application aura certainement une refonte ou une grosse mise à jour dans les jours à suivre, je m'excuse de l'absence du code source, je l'ajouterai le plus rapidement possible mais je manque de temps.**
 
 ## Version disponible
 
