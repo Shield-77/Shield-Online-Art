@@ -1,21 +1,19 @@
-# SHIELD Online Art
+# Shield Online Art
 
-Galerie en ligne **expérimentale** pour 3DS et 2DS. Elle parcourt des tags DeviantArt, affiche des aperçus JPEG/PNG et peut placer l'image sur un plan stéréoscopique quand le curseur 3D est actif. Elle nécessite le Wi-Fi et ne télécharge pas les œuvres sur la carte SD.
+Galerie **expérimentale** pour 3DS. L’application parcourt des tags DeviantArt, affiche des aperçus JPEG/PNG et peut présenter une image sur un plan stéréoscopique lorsque le curseur 3D est actif. Sur 2DS, l’affichage reste en 2D. Le Wi-Fi est nécessaire ; les œuvres consultées ne sont pas enregistrées comme fichiers image sur la carte SD.
 
-## Version disponible
+## Version et limites
 
-La dernière release est **[v0.1.9](https://github.com/Shield-77/Shield-Online-Art/releases/tag/v0.1.9)** (`ShieldOnlineArt.cia`, Title ID `000400000A210500`, version CIA 25). Elle ajoute l'affichage stéréoscopique plafonné à 6 pixels de parallaxe. **Le build a été compilé, mais cette version n'a pas encore été validée sur une vraie Old 3DS.** L'affichage 2DS reste en 2D.
+La release actuelle est [v0.1.9](https://github.com/Shield-77/Shield-Online-Art/releases/tag/v0.1.9), fichier `ShieldOnlineArt.cia`, Title ID `000400000A210500`, version CIA interne 25. Elle limite la parallaxe stéréoscopique à 6 pixels. La recherche porte sur les **tags** : ce n’est pas une recherche libre dans tout DeviantArt. Une v0.2.0 existe localement mais n’est pas publiée dans ce dépôt.
 
-Le code publié dans [`source/`](source/) et [`include/`](include/) correspond à **v0.1.9**. Une v0.2.0 locale est en cours de travail et n'est pas publiée ici. Le dépôt contient aussi la page de retour [`oauth/`](oauth/) et les composants tiers dans [`third_party/`](third_party/).
+Le [code de v0.1.9](source/), les [en-têtes](include/), le [retour OAuth](oauth/) et les [composants tiers](third_party/) sont disponibles ici. Le CIA de v0.1.9 et ce source ont été compilés ; la version reste expérimentale et les retours d’usage sont bienvenus.
 
-## Utilisation et données
+## Connexion et données
 
-La recherche actuelle fonctionne **par tag**, pas comme une recherche libre sur tout le site. L'authentification se fait avec un téléphone sur le même réseau et un code temporaire. Le Client ID présent dans le code est public ; aucun mot de passe ni Client Secret n'est fourni dans le dépôt.
+L’authentification utilise un téléphone sur le même réseau et un code temporaire. Le Client ID intégré est public ; aucun mot de passe ou Client Secret n’est fourni dans le dépôt. L’application peut conserver facultativement un jeton de renouvellement dans `sdmc:/3ds/ShieldOnlineArt/refresh.dat`. Ce jeton est stocké **en clair** : ne partagez pas ce fichier ni une copie non protégée de la carte SD. Le supprimer localement ne révoque pas l’autorisation du compte DeviantArt ; cette révocation doit être faite depuis le compte. Les favoris gardent des références aux œuvres, pas leurs images.
 
-Après connexion, l'application peut enregistrer **facultativement** un jeton de renouvellement dans `sdmc:/3ds/ShieldOnlineArt/refresh.dat`. Ce jeton donne accès au compte et est conservé **en clair** sur la carte SD : ne partagez ni ce fichier ni une copie de la carte. Le supprimer dans l'application n'annule pas l'autorisation côté DeviantArt ; il faut la révoquer depuis le compte si nécessaire. Les favoris enregistrent des références à des œuvres, pas leurs images.
+## Compiler et droits
 
-## Compiler et licences
+Installer devkitPro/devkitARM, libctru, libcurl, mbedTLS, libjpeg et libpng. Obtenir `makerom` et `bannertool` séparément, puis lancer `make cia` en indiquant leurs chemins avec `MAKEROM` et `BANNERTOOL` si nécessaire. `romfs/ca-bundle.pem` sert à la vérification TLS.
 
-Installer devkitPro/devkitARM, libctru, libcurl, mbedTLS, libjpeg et libpng, puis obtenir `makerom` et `bannertool` séparément. Lancer `make cia` ; `MAKEROM` et `BANNERTOOL` permettent d'indiquer leurs chemins. Le fichier `romfs/ca-bundle.pem` est nécessaire à la vérification TLS.
-
-Le code original de SHIELD Online Art est sous [GPLv3](LICENSE). `jsmn` et le générateur QR de Project Nayuki gardent leurs licences MIT dans leurs fichiers sources ; voir [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Les œuvres, marques et noms affichés via DeviantArt appartiennent à leurs auteurs. Le fanart local `callie.jpg` et les exécutables de compilation ne sont pas distribués dans ce code source. Le code a été généré avec l'aide de Codex ; les fonctions restent expérimentales.
+Le code original est sous [GPLv3](LICENSE). `jsmn` et le générateur QR de Project Nayuki conservent leurs licences MIT ; voir [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Les œuvres affichées restent sous les droits de leurs auteurs. Le fanart local `callie.jpg` et les exécutables de compilation ne sont pas inclus dans le source public. Codex a aidé à générer le code.
