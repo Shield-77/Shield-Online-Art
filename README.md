@@ -1,5 +1,7 @@
 # Shield Online Art
 
+**Codex was used to generate the code**
+
 Galerie **expérimentale** pour 3DS. L’application parcourt des tags DeviantArt, affiche des aperçus JPEG/PNG et peut présenter une image sur un plan stéréoscopique lorsque le curseur 3D est actif. Sur 2DS, l’affichage reste en 2D. Le Wi-Fi est nécessaire ; les œuvres consultées ne sont pas enregistrées comme fichiers image sur la carte SD.
 
 ## Version et limites
